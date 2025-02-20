@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String @id @default(uuid())
+  firstname String
+  lastname  String
+  username  String @unique
+  email     String @unique
+  password  String
+  
+  pools     Pool[]
+  sentNotifications    Notification[] @relation("SentNotifications")
+  receivedNotifications Notification[] @relation("ReceivedNotifications")
+
+  @@map("users")
+}
+
+model Pool {
+  id             String   @id @default(uuid())
+  location       String
+  day            String
+  destination    String
+  departureTime  DateTime
+  carType        String
+  seatsAvailable Int
+  peakPoint      String
+  cost           Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  owner          String
+
+  user           User     @relation(fields: [owner], references: [id], onDelete: Cascade)
+  notifications  Notification[] @relation("PoolNotifications")
+
+   @@index([location])
+   @@index([day])
+
+  @@map("pools")
+}
+
+
+model Notification {
+  id          String   @id @default(uuid())
+  message     String
+  senderId    String
+  receiverId  String
+  poolId      String
+  createdAt   DateTime @default(now())
+  isRead      Boolean  @default(false)
+  status      String   @default("pending")
+
+  sender      User     @relation("SentNotifications", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver    User     @relation("ReceivedNotifications", fields: [receiverId], references: [id], onDelete: Cascade)
+  pool        Pool     @relation("PoolNotifications", fields: [poolId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
+

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom"; // Import the useNavigate hook for redirection
+import { useNavigate } from "react-router-dom";
 import "./updatePassword.css";
+import apiBase from "../../utils/apiBase";
 
 function UpdatePassword() {
   const [passwordInfo, setPasswordInfo] = useState({
@@ -10,7 +11,7 @@ function UpdatePassword() {
     confirmNewPassword: "",
   });
 
-  const navigate = useNavigate(); // Initialize the navigation hook
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +31,7 @@ function UpdatePassword() {
     }
 
     try {
-      const response = await fetch("http://localhost:4000/auth/password", {
+      const response = await fetch(`${apiBase}/auth/password`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

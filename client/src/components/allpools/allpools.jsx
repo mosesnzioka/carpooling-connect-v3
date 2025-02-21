@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import apiBase from "../../utils/apiBase";
 import "./allpools.css";
 
 function Allpools() {
@@ -10,7 +11,7 @@ function Allpools() {
   useEffect(() => {
     const fetchPools = async () => {
       try {
-        const response = await fetch("http://localhost:4000/pools", {
+        const response = await fetch(`${apiBase}/pools`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

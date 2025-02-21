@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
+import apiBase from "../../utils/apiBase";
+import EditPool from "../updatepool/updatepool";
 import "./myPools.css";
+
 
 function MyPools() {
   const [pools, setPools] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [selectedPool, setSelectedPool] = useState(null); // For updating
+  const [selectedPool, setSelectedPool] = useState(null);
 
   const [updateData, setUpdateData] = useState({
     location: "",
@@ -23,7 +26,7 @@ function MyPools() {
       setError("");
 
       try {
-        const response = await fetch("http://localhost:4000/pool/user", {
+        const response = await fetch(`${apiBase}/pool/user`, {
           method: "GET",
           credentials: "include",
           headers: {
@@ -52,7 +55,7 @@ function MyPools() {
   const handleDelete = async (id) => {
     try {
       setIsLoading(true);
-      const response = await fetch(`http://localhost:4000/pool/${id}`, {
+      const response = await fetch(`${apiBase}/pool/${id}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -62,7 +65,6 @@ function MyPools() {
         throw new Error(errorData.message || "Failed to delete pool.");
       }
 
-      // Update UI after deletion
       setPools(pools.filter((pool) => pool.id !== id));
       toast.success("Pool deleted successfully!");
     } catch (err) {
@@ -90,7 +92,7 @@ function MyPools() {
 
     try {
       setIsLoading(true);
-      const response = await fetch(`http://localhost:4000/pool/${selectedPool.id}`, {
+      const response = await fetch(`${apiBase}/pool/${selectedPool.id}`, {
         method: "PATCH",
         credentials: "include",
         headers: {
@@ -104,7 +106,7 @@ function MyPools() {
         throw new Error(errorData.message || "Failed to update pool.");
       }
 
-      // Update the pool list with the new data
+      
       const updatedPool = await response.json();
       setPools((prevPools) =>
         prevPools.map((pool) => (pool.id === updatedPool.id ? updatedPool : pool))
@@ -210,7 +212,7 @@ function MyPools() {
         />
       </label>
       <div className="form-actions">
-        <button type="submit" className="form-update-button">Update</button>
+        <button type="submit" className="form-update-button" onClick={EditPool}>Update</button>
         <button type="button" className="form-cancel-button" onClick={() => setSelectedPool(null)}>Cancel</button>
       </div>
     </form>

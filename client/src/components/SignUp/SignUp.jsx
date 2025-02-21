@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { toast } from "sonner";
 import "./SignUp.css";
+import apiBase from "../../utils/apiBase";
 
 function SignupForm() {
   const [firstName, setFirstName] = useState("");
@@ -15,7 +16,7 @@ function SignupForm() {
 
   const { mutate, isLoading } = useMutation({
     mutationFn: async (newUser) => {
-      const response = await fetch(`http://localhost:4000/users`, {
+      const response = await fetch(`${apiBase}/users`, {
         method: "POST",
         body: JSON.stringify(newUser),
         headers: {
@@ -152,7 +153,9 @@ function SignupForm() {
 
         <h3>
           Already have an account? <Link to="/signin">Sign In</Link>
+
         </h3>
+        <a className="direct-to-signup" href="landingpage">back home</a>
       </div>
     </form>
   );

@@ -8,7 +8,6 @@ function HomePage() {
     <div>
       <LandingHeaderNavs />
       <Home />
-      <Footer />
     </div>
   );
 }

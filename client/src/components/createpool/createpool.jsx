@@ -3,6 +3,7 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import "./createpool.css";
+import apiBase from "../../utils/apiBase";
 
 function CreatePoolForm() {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ function CreatePoolForm() {
   const navigate = useNavigate();
   const { mutate, isLoading, isError, error } = useMutation({
     mutationFn: async (pool) => {
-      const response = await fetch(`http://localhost:4000/pool`, {
+      const response = await fetch(`${apiBase}/pool`, {
         method: "POST",
         body: JSON.stringify(pool),
         headers: {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./updatepool.css";
 import Fullpool from "../fullpool/fullpool";
+import apiBase from "../../utils/apiBase";
 
 function EditPool({ Pool={Fullpool}, onUpdate, onCancel }) {
   const [updatedPool, setUpdatedPool] = useState({
@@ -23,7 +24,7 @@ function EditPool({ Pool={Fullpool}, onUpdate, onCancel }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:4000/pool/${pool.id}`, {
+      const response = await fetch(`${apiBase}/pool/${pool.id}`, {
         method: "PUT",
         credentials: "include",
         headers: {

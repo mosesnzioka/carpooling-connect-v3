@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
 import "./driverRequets.css";
+import apiBase from "../../utils/apiBase";
 
 function DriverRequests() {
   const [notifications, setNotifications] = useState([]);
@@ -10,7 +11,7 @@ function DriverRequests() {
   useEffect(() => {
     const fetchUserId = async () => {
       try {
-        const response = await fetch("http://localhost:4000/current_user", {
+        const response = await fetch(`${apiBase}/current_user`, {
           credentials: "include",
         });
         if (response.ok) {
@@ -31,7 +32,7 @@ function DriverRequests() {
     const fetchNotifications = async () => {
       try {
         const response = await fetch(
-          "http://localhost:4000/notifications/user",
+          `${apiBase}/notifications/user`,
           {
             credentials: "include",
           },
@@ -56,7 +57,7 @@ function DriverRequests() {
   const handleResponse = async (notificationId, status) => {
     try {
       const response = await fetch(
-        "http://localhost:4000/notifications/status",
+        `${apiBase}/notifications/status`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -82,7 +83,7 @@ function DriverRequests() {
   const handleDelete = async (notificationId) => {
     try {
       const response = await fetch(
-        `http://localhost:4000/notifications/${notificationId}`,
+        `${apiBase}/notifications/${notificationId}`,
         {
           method: "DELETE",
           credentials: "include",

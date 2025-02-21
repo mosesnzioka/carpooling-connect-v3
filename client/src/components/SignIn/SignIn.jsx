@@ -4,6 +4,7 @@ import { useMutation } from "react-query";
 import { toast } from "sonner";
 import "./signIn.css";
 import useUserStore from "../store/userstore";
+import apiBase from "../../utils/apiBase";
 
 function SignInUser() {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ function SignInUser() {
 
   const { mutate, isLoading, isError, error } = useMutation({
     mutationFn: async (userObj) => {
-      const response = await fetch(`http://localhost:4000/auth/login`, {
+      const response = await fetch(`${apiBase}/auth/login`, {
         method: "POST",
         body: JSON.stringify(userObj),
         headers: {
@@ -80,6 +81,7 @@ function SignInUser() {
           <a className="direct-to-signup" href="signup">
             Click here to register
           </a>
+          <a className="direct-to-signup" href="landingpage">back home</a>
         </div>
       </div>
     </form>

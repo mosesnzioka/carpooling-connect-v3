@@ -2,13 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import "./logout.css";
+import apiBase from "../../utils/apiBase";
 
 function Logout() {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:4000/logout", {
+      const response = await fetch(`${apiBase}/logout`, {
         method: "POST",
         credentials: "include",
       });

@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 import "./fullpool.css";
+import apiBase from "../../utils/apiBase";
 
 function Fullpool() {
   const { id } = useParams();
@@ -10,7 +11,7 @@ function Fullpool() {
   const { data, error, isError, isLoading } = useQuery(
     `pool-${id}`,
     async () => {
-      const response = await fetch(`http://localhost:4000/pool/${id}`, {
+      const response = await fetch(`${apiBase}/pool/${id}`, {
         credentials: "include",
       });
 
@@ -46,7 +47,7 @@ function Fullpool() {
 
   const handleJoinPool = async () => {
     try {
-      const response = await fetch("http://localhost:4000/current_user", {
+      const response = await fetch(`${apiBase}/current_user`, {
         credentials: "include",
       });
 
@@ -69,7 +70,7 @@ function Fullpool() {
       }
 
       const notificationResponse = await fetch(
-        "http://localhost:4000/notifications",
+        `${apiBase}/notifications`,
         {
           method: "POST",
           headers: {

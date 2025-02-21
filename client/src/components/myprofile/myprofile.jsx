@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
 import useUserStore from "../store/userstore";
 import "./myprofile.css";
+import apiBase from "../../utils/apiBase";
 
 function PersonalInformation() {
   const [userInfo, setUserInfo] = useState({
@@ -26,7 +27,7 @@ function PersonalInformation() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:4000/user", {
+      const response = await fetch(`${apiBase}/user`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userInfo),

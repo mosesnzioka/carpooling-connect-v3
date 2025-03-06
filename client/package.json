@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.0.11",
     "jwt-decode": "^4.0.0",
     "query": "^0.2.0",
     "react": "^18.3.1",
@@ -17,6 +18,7 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.28.0",
     "sonner": "^1.7.0",
+    "tailwindcss": "^4.0.11",
     "zustand": "^5.0.1"
   },
   "devDependencies": {

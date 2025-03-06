@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import "./updatepool.css";
 import Fullpool from "../fullpool/fullpool";
 import apiBase from "../../utils/apiBase";

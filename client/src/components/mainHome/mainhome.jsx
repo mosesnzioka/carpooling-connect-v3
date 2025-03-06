@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./mainhome.css";
 
 function MainHomePage() {

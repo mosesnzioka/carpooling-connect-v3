@@ -1,10 +1,11 @@
-import React from "react";
+
 import "./home.css";
 
 function Home() {
   return (
     <div className="lagingpage">
       <div className="landingpage-discription">
+        <div className="text-7xl text-center text-green-400"><h2>welcome to carpooling connect system</h2></div>
         <div className="welcoming-user">
           <h2 className="welcome-header">lets save together..</h2>
           <p className="welcoming-description">

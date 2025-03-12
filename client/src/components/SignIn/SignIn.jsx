@@ -2,9 +2,9 @@ import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { toast } from "sonner";
-import "./signIn.css";
 import useUserStore from "../store/userstore";
 import apiBase from "../../utils/apiBase";
+import "./SignIn.css";
 
 function SignInUser() {
   const [email, setEmail] = useState("");

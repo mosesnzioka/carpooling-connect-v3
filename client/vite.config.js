@@ -26,4 +26,9 @@ export default defineConfig({
     outDir: "dist",
   },
   base: "/",
+  resolve: {
+    alias: {
+      "@": "/src",
+    },
+  },
 });

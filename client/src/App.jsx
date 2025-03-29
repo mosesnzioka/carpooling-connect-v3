@@ -27,7 +27,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<MainHomePage />} />
           <Route path="/landingpage" element={<HomePage/>}/>
-          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/auth/login" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/createpool" element={<Createpoolpage />} />
           <Route path="/allpools" element={<Allpoolspage />} />

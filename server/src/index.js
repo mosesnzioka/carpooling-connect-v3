@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["https://carpooling-connect-v3-frontend.onrender.com"],
     methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
     credentials: true,
   }),
